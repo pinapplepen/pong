@@ -30,6 +30,11 @@ void game() {
   ballx = ballx + vx;
   bally = bally + vy;
   
+  //scoring
+  if (ballx < 0) {
+    
+  }
+  
   //Distance between targets
   d = dist(leftx, lefty, ballx, bally);
   d2 = dist(rightx, righty, ballx, bally);
