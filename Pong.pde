@@ -40,13 +40,14 @@ void setup() {
   balld = 100;
   
   //Initialize Velocity
-  vx = random(-3, 3);
-  vy = random(-3, 3);
+  vx = random(-10, 10);
+  vy = random(-10, 10);
   
   //Initialize keyboard variabless
   wkey = skey = upkey = downkey = false;
   
-
+ //Time and points
+ timer = 100; 
   
 }
 

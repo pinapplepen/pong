@@ -9,6 +9,8 @@ void game() {
   text(leftscore, width/4, 100);
   fill(18, 255, 55);
   text(rightscore, 3*width/4, 100);
+  text(timer, 3*width/4, 550);
+  timer = timer - 1;
   
   //draw paddles
   fill(13, 255, 249);
@@ -27,23 +29,41 @@ void game() {
   if (downkey == true) righty = righty + 5;
   
   //move ball
+  if (timer < 0) {
   ballx = ballx + vx;
   bally = bally + vy;
+  }
+  
+  //Hitting top and bottom
+  if (bally < balld/2) {
+  bally = balld/2;   
+  }
+  
+  if (bally > 800 - balld/2 ) {
+  bally = 800 - balld/2;
+  }
   
   //scoring
   if (ballx < 0) {
-    
+    rightscore = rightscore + 1;
+    ballx = width/2;
+    bally = height/2;
+    timer = 100;
   }
+  
+  if (ballx > 800) {
+    leftscore = leftscore + 1;
+    ballx = width/2;
+    bally = height/2;
+    timer = 100;
+  }
+    
   
   //Distance between targets
   d = dist(leftx, lefty, ballx, bally);
   d2 = dist(rightx, righty, ballx, bally);
   
   //Bounce off walls
-   if (ballx < balld/2 | ballx > width - balld/2) {
-    vx = vx * -1;
-  }
-  
   if (bally < balld/2 |bally >height - balld/2) {
     vy = vy * -1;
   }

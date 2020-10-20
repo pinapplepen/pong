@@ -1,4 +1,10 @@
 void gameover() {
+  if (leftscore > rightscore) {
+    
+    
+  } else {
+ 
+  }
   
 }
 
