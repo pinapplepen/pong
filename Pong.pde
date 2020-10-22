@@ -9,12 +9,14 @@ final int INTRO = 1;
 final int GAME = 2;
 final int PAUSE = 3;
 final int GAMEOVER = 4;
+final int OPTIONS = 5;
 
 //Entity Variables
 float leftx, lefty, leftd, rightx, righty, rightd; //Paddles
 float ballx, bally, balld; //Ball
 float vx, vy; //Velocity
 float d, d2;
+boolean AI; 
 
 //Scoring
 int leftscore, rightscore, timer; 
@@ -22,9 +24,20 @@ int leftscore, rightscore, timer;
 //keyboard variables
   boolean wkey, skey, upkey, downkey;
   
+//Images 
+PImage bg1;
+
+//Font
+PFont normal;
+PFont normal2; 
+
+//Stroke
+color tact = #00F9FF;
+
+
 void setup() {
   size(800, 800);
-  mode = GAME;
+  mode = INTRO;
   
   //initalize paddles
   leftx = 0;
@@ -48,7 +61,13 @@ void setup() {
   
  //Time and points
  timer = 100; 
+ 
+ //Images
+ bg1 = loadImage("neonbackground.jpg");
   
+ //Font
+ normal = createFont("font.ttf", 150);
+ normal2 = createFont ("font2.ttf", 150); 
 }
 
 
@@ -57,6 +76,8 @@ void draw() {
     intro();
   } else if (mode == GAME) {
     game();
+  } else if (mode == OPTIONS) {
+    options();
   } else if (mode == PAUSE) {
     pause();
   } else if (mode == GAMEOVER) {
