@@ -3,6 +3,14 @@
 //Block 1-2B
 //Oct, 18, 2020
 
+//Sound
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //Mode Framework
 int mode;
 final int INTRO = 1;
@@ -17,6 +25,7 @@ float ballx, bally, balld; //Ball
 float vx, vy; //Velocity
 float d, d2;
 boolean AI; 
+int bSelect;
 
 //Scoring
 int leftscore, rightscore, timer; 
@@ -26,6 +35,9 @@ int leftscore, rightscore, timer;
   
 //Images 
 PImage bg1;
+PImage bg2;
+PImage bg3;
+PImage bg4;
 
 //Font
 PFont normal;
@@ -34,10 +46,19 @@ PFont normal2;
 //Stroke
 color tact = #00F9FF;
 
+//Sounds
+Minim minim;
+AudioPlayer song1;
+AudioPlayer rightPaddle;
+AudioPlayer leftPaddle;
+AudioPlayer wall;
+AudioPlayer score;
+AudioPlayer clapping;
 
 void setup() {
   size(800, 800);
   mode = INTRO;
+  bSelect = 1; 
   
   //initalize paddles
   leftx = 0;
@@ -64,11 +85,28 @@ void setup() {
  
  //Images
  bg1 = loadImage("neonbackground.jpg");
-  
+ bg2 = loadImage("background2.jpg");
+ bg3 = loadImage("bg3.jpg");
+ //bg4 = loadImage("neonbackground.jpg");
+ 
  //Font
  normal = createFont("font.ttf", 150);
  normal2 = createFont ("font2.ttf", 150); 
+ 
+ //Sound
+ minim = new Minim(this);
+ song1 = minim.loadFile("song.mp3");
+ rightPaddle = minim.loadFile("rightpaddle.wav");
+ leftPaddle = minim.loadFile("leftpaddle.wav");
+ wall = minim.loadFile("wall.wav");
+ score = minim.loadFile("score.wav");
+ clapping = minim.loadFile("clapping.wav");
+ 
+ song1.play();
+ song1.loop();
+ 
 }
+
 
 
 void draw() {

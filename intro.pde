@@ -28,6 +28,8 @@ void intro() {
  textSize(35);
  text("Options", 455, 565);
 
+//Music
+clapping.pause();
  
 }
 
@@ -35,7 +37,8 @@ void introClicks() {
   //Singleplayer
   if (mouseX > 150 && mouseX < 350 && mouseY > 500 && mouseY < 600) {
     mode = GAME;
-    
+    righty = 400;
+    lefty = 400;
   }
   
   //Multiplayer
@@ -43,6 +46,8 @@ void introClicks() {
  
   if (mouseX > 450 && mouseX < 650 && mouseY > 500 && mouseY < 600) {
     mode = OPTIONS;
+    righty = 400;
+    lefty = 400;
      }
   
  

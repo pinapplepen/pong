@@ -9,7 +9,39 @@ void options() {
  line(150, 600, 350, 600);
  textSize(50);
  text("Solo", 165, 565);
+ textFont(normal2);
+ textSize(30);
+ text("Using a custom background might lag the game", 150, 400);
+ text("Play with the NONE background for optimal performance", 100, 450);
+ textFont(normal);
+ 
+ //Backgrounds
+ textSize(50);
+ text("Background Select", 60, 175);
+ 
+ //1
+ strokeWeight(3);
+ fill(250, 0, 221);
+ tactile(75, 200, 200, 100);
+ rect(75, 200, 200, 100);
+ textSize(50);
+ fill(255);
+ text("None",90, 270);
 
+
+ 
+ //2
+ strokeWeight(5);
+ tactile(300, 200, 200, 100);
+ rect(300, 200, 200, 100);
+ image(bg2, 300, 200, 200, 100);
+ 
+ //3
+ strokeWeight(5);
+ tactile(525, 200, 200, 100);
+ rect(525, 200, 200, 100);
+ image(bg3, 525, 200, 200, 100);
+ 
  
  //Options
  strokeWeight(5);
@@ -43,6 +75,22 @@ void options() {
    
  }
  
+  if (bSelect == 1) {
+  textSize(30);
+  text("Selected", 75, 350);
+  }
+  
+  if (bSelect == 2) {
+  textSize(30);
+  text("Selected", 300, 350);
+  }
+  
+  
+  if (bSelect == 3) {
+ textSize(30);
+ text("Selected", 525, 350);
+  }
+ 
  
  //Back
  
@@ -69,5 +117,19 @@ void optionClicks() {
     mode = INTRO;
   }
   
+  //Background
+   if (mouseX > 75 && mouseX < 275 && mouseY > 200 && mouseY < 300) {
+   bSelect = 1;     
+  }
+  
+  if (mouseX > 300 && mouseX < 500 && mouseY > 200 && mouseY < 300) {
+     bSelect = 2;  
+    
+  }
+  
+  if (mouseX > 525 && mouseX < 725 && mouseY > 200 && mouseY < 300) {
+     bSelect = 3;  
+   
+  }
   
 }

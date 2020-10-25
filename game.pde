@@ -1,6 +1,16 @@
 void game() {
+  if (bSelect == 1) {
   background(0);
-
+  }
+  
+  if (bSelect == 2) {
+  image(bg2, 0, 0, 800, 800);
+  }
+  
+  if (bSelect == 3){
+  image(bg3, 0, 0, 800, 800);
+  }
+  
   //scoreboard
   textSize(5);
   fill(13, 255, 249);
@@ -25,12 +35,12 @@ void game() {
   circle(ballx, bally, balld);
 
   //move paddles
-  if (wkey == true) lefty = lefty - 5;
-  if (skey == true) lefty = lefty + 5;
+  if (wkey == true && lefty > balld) lefty = lefty - 5;
+  if (skey == true && lefty < height - balld) lefty = lefty + 5;
   
   if (AI == false) {
-  if (upkey == true) righty = righty - 5;
-  if (downkey == true) righty = righty + 5;
+  if (upkey == true && righty > balld) righty = righty - 5;
+  if (downkey == true && righty < height - balld) righty = righty + 5;
   
   } else {
     
@@ -43,6 +53,8 @@ void game() {
       righty = righty + 3;
     }
     
+    
+   
   }
  
     
@@ -70,6 +82,8 @@ void game() {
     ballx = width/2;
     bally = height/2;
     timer = 100;
+    score.rewind();
+    score.play();
   }
 
   if (ballx > 800) {
@@ -77,8 +91,22 @@ void game() {
     ballx = width/2;
     bally = height/2;
     timer = 100;
+    score.rewind();
+    score.play();
   }
-
+  
+  if (leftscore == 3) {
+    mode = GAMEOVER;
+    clapping.rewind();
+    clapping.play();
+  }
+  
+  
+  if (rightscore == 3) {
+    mode = GAMEOVER;
+    clapping.rewind();
+    clapping.play();
+  }
 
   //Distance between targets
   d = dist(leftx, lefty, ballx, bally);
@@ -87,16 +115,22 @@ void game() {
   //Bounce off walls
   if (bally <= balld/2 || bally >= height - balld/2) {
     vy = vy * -1;
+    wall.rewind();
+    wall.play();
   }
 
   //Left paddle bounce
   if (d <= leftd/2 + balld/2) {
+    leftPaddle.rewind();
+    leftPaddle.play();
     vx = (ballx - leftx)/20;
     vy = (bally - lefty)/20;
   }
 
   //right paddle bounce
   if (d2 <= rightd/2 + balld/2) {
+    rightPaddle.rewind();
+    rightPaddle.play();
     vx = (ballx - rightx)/20;
     vy = (bally - righty)/20;
   }

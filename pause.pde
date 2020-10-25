@@ -1,6 +1,8 @@
 void pause() {
+  textSize(100);
   textMode(CENTER);
-  text("PAUSED" ,400, 400);
+  fill(255);
+  text("PAUSED" ,280, 400);
   textMode(CORNER);
 }
 
